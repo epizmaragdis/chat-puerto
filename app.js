@@ -23,8 +23,28 @@ var Conversation = require('watson-developer-cloud/conversation/v1'); // watson 
 var app = express();
 
 // Bootstrap application settings
-app.use(express.static('./public')); // load UI from public folder
+app.use(express.static( './public'));
+
+
 app.use(bodyParser.json());
+
+app.get('/twitter',function(req,res){
+
+     res.sendFile(__dirname + '/twitter.html');
+
+});
+app.get('/navigate',function(req,res){
+
+     res.sendFile(__dirname + '/navigate.html');
+
+});
+
+app.get('/wheater',function(req,res){
+
+     res.sendFile(__dirname + '/wheater.html');
+
+});
+
 
 // Create the service wrapper
 var conversation = new Conversation({
@@ -93,5 +113,7 @@ function updateMessage(input, response) {
   response.output.text = responseText;
   return response;
 }
+
+
 
 module.exports = app;
